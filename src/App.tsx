@@ -1,24 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import { useState } from "react";
+import "./App.css";
+import Mainheader from "./components/Mainheader";
+import ProductsList from "./components/ProductsList";
+import CartItems from "./components/Models/CartItems";
 function App() {
+  const [cart, setCart] = useState<CartItems[]>([]);
+
+  const onAddCart = (id: number) => {
+    const existingItem = cart.find((cart) => cart.id === id);
+    if (!existingItem) {
+      cart.push({ id, quantity: 1 });
+    } else {
+      existingItem.quantity++;
+    }
+    console.log(cart);
+  };
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Mainheader />
+      <ProductsList onAddCart={onAddCart} />
     </div>
   );
 }
