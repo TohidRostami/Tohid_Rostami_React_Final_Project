@@ -3,6 +3,8 @@ import "./App.css";
 import Mainheader from "./components/Mainheader";
 import ProductsList from "./components/ProductsList";
 import CartItems from "./components/Models/CartItems";
+import { createBrowserRouter } from "react-router-dom";
+import RootLayout from "./components/Root";
 function App() {
   const [cart, setCart] = useState<CartItems[]>([]);
 
@@ -15,7 +17,7 @@ function App() {
     }
     console.log(cart);
   };
-  
+
   return (
     <div className="App">
       <Mainheader />

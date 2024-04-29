@@ -4,7 +4,22 @@ import ProductObject from "./Product";
 
 const ProductsList: React.FC<{ onAddCart: (id: number) => void }> = (props) => {
   const [products, setProducts] = useState<Product[]>([]);
+  const [categories, setCategories] = useState<string[]>([]);
 
+  const productsCategory = () => {
+    let arr: string[] = [];
+    products.map((prod) => {
+      arr.push(prod.category);
+    });
+    //console.log(arr);
+    // console.log(
+    //   arr.filter((value, index) => arr.indexOf(value) === index)
+    // );
+    return arr.filter((value, index) => arr.indexOf(value) === index);
+    // console.log(arr);
+  };
+
+  console.log("productList");
   useEffect(() => {
     async function fetchProducts() {
       const response = await fetch("https://fakestoreapi.com/products");
@@ -32,6 +47,7 @@ const ProductsList: React.FC<{ onAddCart: (id: number) => void }> = (props) => {
         <div className="category-search-box">
           <div className="category-search">
             <select name="category" id="category">
+              {}
               <option className="category-option" disabled selected>
                 Category
               </option>
@@ -44,7 +60,13 @@ const ProductsList: React.FC<{ onAddCart: (id: number) => void }> = (props) => {
           <p>loading</p>
         ) : (
           products.map((prod) => {
-            return <ProductObject key={prod.title} item={prod} onAddCart={props.onAddCart}/>;
+            return (
+              <ProductObject
+                key={prod.title}
+                item={prod}
+                onAddCart={props.onAddCart}
+              />
+            );
           })
         )}
       </ul>
