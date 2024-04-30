@@ -1,6 +1,6 @@
-import { useLoaderData } from "react-router-dom";
+import Product from "../Models/Product";
 
-function ProductObject({products}) {
+const ProductObject: React.FC<{ products: Product[] }> = (props) => {
   return (
     <>
       <div className="search">
@@ -21,7 +21,7 @@ function ProductObject({products}) {
         </div>
       </div>
       <div>
-        {products.map((prod) => {
+        {props.products.map((prod) => {
           return (
             <div className="cart col-md-4" key={prod.title}>
               <div className="cart-picture">

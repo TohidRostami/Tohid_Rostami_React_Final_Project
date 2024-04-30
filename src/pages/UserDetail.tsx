@@ -1,10 +1,12 @@
 import { useLoaderData } from "react-router-dom";
 import User from "../components/User";
+import UserType from "../Models/User";
 
-function UserDetail() {
-  const user = useLoaderData();
-  return <User user={user} />;
-}
+const UserDetail: React.FC<{}> = () => {
+  const loadedUser = useLoaderData() as UserType;
+  console.log(loadedUser);
+  return <User user={loadedUser} />;
+};
 
 export default UserDetail;
 

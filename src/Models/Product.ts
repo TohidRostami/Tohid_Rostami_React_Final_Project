@@ -12,7 +12,7 @@ class Product {
     prdtPrice: string,
     prdtCategory: string,
     prdtdesc: string,
-    prdtImg: string
+    prdtImg: string,
   ) {
     this.id = prdctId;
     this.title = prdtTitle;

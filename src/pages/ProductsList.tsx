@@ -1,19 +1,10 @@
+import Product from "../Models/Product";
 import ProductObject from "../components/Product";
 import { useLoaderData } from "react-router-dom";
 
 const ProductsList: React.FC<{}> = () => {
-  const products = useLoaderData();
-
-  // console.log(products);
-
-  // const productsCategory = () => {
-  //   let arr: string[] = [];
-  //   products.map((prod) => {
-  //     arr.push(prod.category);
-  //   });
-  //   return arr.filter((value, index) => arr.indexOf(value) === index);
-  // };
-
+  const products = useLoaderData() as Product[];
+  console.log(products);
   return <ProductObject products={products} />;
 };
 
@@ -28,7 +19,6 @@ export async function loader() {
       { status: 500 }
     );
   } else {
-    
     return response;
   }
 }
