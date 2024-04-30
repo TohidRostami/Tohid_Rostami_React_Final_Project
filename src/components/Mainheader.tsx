@@ -1,7 +1,7 @@
+import { Link } from "react-router-dom";
 import logo from "../images/825.jpg";
 
-
-export default function Mainheader () {
+export default function Mainheader() {
   return (
     <header>
       <div className="user-profile">
@@ -9,7 +9,7 @@ export default function Mainheader () {
           {/* <img src={logo} alt="profile-picture" /> */}
         </div>
         <div className="user-profile-name">
-          <a href="">Hi, James</a>
+          <Link to="/userDetails">Hi, James</Link>
         </div>
       </div>
       <div className="logo">
@@ -17,7 +17,7 @@ export default function Mainheader () {
       </div>
       <div className="products-basket">
         <div className="products-basket-disc">
-          <a href="">Cart</a>
+          <Link to="/cartItems">Cart</Link>
           <span id="numberOfProducts">0</span>
         </div>
       </div>

@@ -1,28 +1,48 @@
-import { useState } from "react";
-import "./App.css";
-import Mainheader from "./components/Mainheader";
-import ProductsList from "./components/ProductsList";
-import CartItems from "./components/Models/CartItems";
-import { createBrowserRouter } from "react-router-dom";
-import RootLayout from "./components/Root";
-function App() {
-  const [cart, setCart] = useState<CartItems[]>([]);
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
-  const onAddCart = (id: number) => {
-    const existingItem = cart.find((cart) => cart.id === id);
-    if (!existingItem) {
-      cart.push({ id, quantity: 1 });
-    } else {
-      existingItem.quantity++;
-    }
-    console.log(cart);
-  };
+import ProductsList, { loader as productsLoader } from "./pages/ProductsList";
+import CartItems from "./components/CartItems";
+import RootLayout from "./components/Root";
+import UserDetail, { loader as userLoader } from "./pages/UserDetail";
+import ErrorPage from "./components/Errors/ErrorPage";
+import Product from "./Models/Product";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <RootLayout />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        index: true,
+        element: <ProductsList />,
+        loader: productsLoader,
+      },
+      { path: "/cartItems", element: <CartItems /> },
+      { path: "/userDetails", element: <UserDetail />, loader: userLoader },
+    ],
+  },
+]);
+
+function App() {
+  // const [cart, setCart] = useState<CartItems[]>([]);
+  // const onAddCart = (id: number) => {
+  //   const existingItem = cart.find((cart) => cart.id === id);
+  //   if (!existingItem) {
+  //     cart.push({ id, quantity: 1 });
+  //   } else {
+  //     existingItem.quantity++;
+  //   }
+  //   console.log(cart);
+  // };
 
   return (
-    <div className="App">
-      <Mainheader />
-      <ProductsList onAddCart={onAddCart} />
-    </div>
+    // <div className="App">
+    //   <Mainheader />
+    //   <ProductsList onAddCart={onAddCart} />
+    // </div>
+
+    <RouterProvider router={router} />
   );
 }
 
