@@ -5,7 +5,7 @@ import { useLoaderData } from "react-router-dom";
 const ProductsList: React.FC<{}> = () => {
   const products = useLoaderData() as Product[];
   console.log(products);
-  return <ProductObject products={products} />;
+  return <ProductObject productsItem={products} />;
 };
 
 export default ProductsList;
