@@ -3,17 +3,10 @@ import Product from "../Models/Product";
 import { ShopContext } from "../shop/shop-context";
 
 const ProductObject: React.FC<{ productsItem: Product[] }> = (props) => {
-  const { products } = useContext(ShopContext);
+  const { handleIncreaseItem } = useContext(ShopContext);
 
   const [selectedCategory, setSelectedCategory] = useState<string>();
   const [searchQuery, setSearchQuery] = useState<string>();
-  let searchText: string = "";
-  console.log("this is search log in Product body rerender", searchQuery);
-
-  function addItem(prod: Product) {
-    products.push(prod);
-    console.log(products);
-  }
 
   const categories = useMemo(() => {
     let arr: string[] = [];
@@ -35,15 +28,9 @@ const ProductObject: React.FC<{ productsItem: Product[] }> = (props) => {
   const handleSearchInputChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       setSearchQuery(event.target.value);
-      console.log("in handle search when you type something.");
     },
     []
   );
-
-  // const handleSearch = useCallback(() => {
-  //   setSearchQuery(searchText);
-  //   searchText = "";
-  // }, [searchText]);
 
   return (
     <>
@@ -103,7 +90,7 @@ const ProductObject: React.FC<{ productsItem: Product[] }> = (props) => {
                       <button
                         type="button"
                         id="button"
-                        onClick={() => addItem(prod)}
+                        onClick={() => handleIncreaseItem(prod)}
                       >
                         Add to cart
                       </button>
@@ -133,7 +120,7 @@ const ProductObject: React.FC<{ productsItem: Product[] }> = (props) => {
                       <button
                         type="button"
                         id="button"
-                        onClick={() => addItem(prod)}
+                        onClick={() => handleIncreaseItem(prod)}
                       >
                         Add to cart
                       </button>
