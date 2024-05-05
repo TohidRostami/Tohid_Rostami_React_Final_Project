@@ -4,10 +4,8 @@ import React, { useContext, useState } from "react";
 import { ShopContext } from "../shop/shop-context";
 import Product from "../Models/Product";
 
-const Mainheader: React.FC<{ products: Product[] }> = (props) => {
-  // const { products } = useContext(ShopContext);
-  console.log(props.products);
-  const[x, setX] = useState(props.products);
+const Mainheader: React.FC<{}> = () => {
+  const { products } = useContext(ShopContext);
 
   return (
     <header>
@@ -24,8 +22,8 @@ const Mainheader: React.FC<{ products: Product[] }> = (props) => {
       </div>
       <div className="products-basket">
         <div className="products-basket-disc">
-          <Link to="/cartItems">Cart{x.length}</Link>
-          <span id="numberOfProducts">{props.products.length}</span>
+          <Link to="/cartItems">Cart</Link>
+          <span id="numberOfProducts">{products.length}</span>
         </div>
       </div>
     </header>

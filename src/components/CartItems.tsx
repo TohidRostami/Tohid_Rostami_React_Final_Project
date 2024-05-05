@@ -3,41 +3,39 @@ import { ShopContext } from "../shop/shop-context";
 import Product from "../Models/Product";
 
 const CartItems: React.FC<{}> = () => {
-  const { products, eachItemCount } = useContext(ShopContext);
+  const {
+    products,
+    eachItemCount,
+    handleIncreaseItem,
+    handleDecreaseItem,
+    handeDeleteWholeItem,
+    sumTotalPrice,
+  } = useContext(ShopContext);
 
-  const [itemsWithCound, setItemsWithCound] = useState(eachItemCount);
+  // console.log(eachItemCount());
 
-  function handleIncreaseItem(prod: Product) {
-    products.push(prod);
-  }
-  function handleDecreaseItem(prod: Product) {
-    const index = products.indexOf(prod);
-    if (index !== -1) {
-      products.splice(index, 1);
-    }
-  }
-
-  function deleteWholeItem(chosenProd:Product){
-    products.forEach((prod)=>{
-      if(prod.id===chosenProd.id){
-        // products.
-      }
-    })
-  }
 
   return (
     <>
       <h1>itemsssss</h1>
-      {itemsWithCound.map((prod) => {
+      {!products.length? <h1>No products selected</h1> :eachItemCount().map((prod) => {
         return (
-          <h1 key={Date.now.length}>
-            {prod.item.title}
-            {prod.count}
-            <br />
-          </h1>
+          <div key={prod.item.id}>
+            <h1>{prod.item.title}</h1>
+            <img src={prod.item.image} alt="product-picture" />
+            <button onClick={() => handleIncreaseItem(prod.item)}>Increase</button>
+            <button onClick={() => handleDecreaseItem(prod.item)}>Decrease</button>
+            <button onClick={() => handeDeleteWholeItem(prod.item)}>
+              Delete whole item
+            </button>
+          </div>
         );
       })}
+      <h1>Total Price: {sumTotalPrice()}$</h1>
       {products.length}
+      {console.log(products)}
+      {console.log(eachItemCount())}
+      {console.log('Total Price:',sumTotalPrice())}
     </>
   );
 };
