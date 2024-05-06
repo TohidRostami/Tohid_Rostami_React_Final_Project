@@ -1,6 +1,8 @@
 import { useContext, useState, useMemo, useCallback } from "react";
 import Product from "../Models/Product";
 import { ShopContext } from "../shop/shop-context";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 const ProductObject: React.FC<{ productsItem: Product[] }> = (props) => {
   const { handleIncreaseItem } = useContext(ShopContext);
@@ -19,7 +21,6 @@ const ProductObject: React.FC<{ productsItem: Product[] }> = (props) => {
   const handleSelectCategory = useCallback(
     (event: React.ChangeEvent<HTMLSelectElement>) => {
       let cat = event.target.value;
-      console.log(cat);
       setSelectedCategory(cat);
     },
     []
@@ -34,62 +35,66 @@ const ProductObject: React.FC<{ productsItem: Product[] }> = (props) => {
 
   return (
     <>
-      <div className="search">
-        <div className="search-text-box">
-          <div className="search-text">
-            {/* <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-              <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" />
-            </svg> */}
-            {/* <button onClick={handleSearch}>Search</button> */}
+      <div className="flex flex-row h-16 items-center my-4">
+        <div className="w-1/3 h-full content-center ml-6">
+          <div className=" flex w-4/5 relative items-center text-gray-500 focus-within:text-gray-600">
+            <FontAwesomeIcon
+              icon={faMagnifyingGlass}
+              className="w-3 h-3 absolute ml-2 pointer-events-none"
+            />
             <input
               type="text"
               name="search"
               id="search"
+              className="pl-6 py-0.5 ring-2 ring-gray-400 rounded-full w-full"
               onChange={handleSearchInputChange}
             />
           </div>
         </div>
-        <div className="category-search-box">
-          <div className="category-search">
+        <div className="w-1/3 h-full content-center ">
+          <div>
             <select
               name="category"
               id="category"
+              className="border-gray-400 border-b-2 pb-1 w-4/5"
               onChange={handleSelectCategory}
             >
-              <option className="category-option" disabled selected>
+              <option disabled selected>
                 Category
               </option>
               {categories.map((cat) => {
-                return (
-                  <option key={cat} className="category-option">
-                    {cat}
-                  </option>
-                );
+                return <option key={cat}>{cat}</option>;
               })}
             </select>
           </div>
         </div>
       </div>
-      <div>
+
+      <div className="grid grid-cols-4 gap-10 mx-9 mb-10">
         {props.productsItem.map((prod) => {
           if (selectedCategory === undefined && searchQuery === undefined) {
             return (
-              <div className="cart col-md-4" key={prod.title}>
-                <div className="cart-picture">
-                  <img src={prod.image} alt="product-picture" />
+              <div key={prod.title}>
+                <div className="h-52">
+                  <img
+                    src={prod.image}
+                    alt="product-picture"
+                    className="h-full w-full"
+                  />
                 </div>
-                <div className="cart-decs-body">
-                  <div className="cart-desc">
-                    <h3>{prod.title}</h3>
-                    <p>{prod.description}</p>
-                    <p id="product-category">{prod.category}</p>
+                <div className="shadow-md rounded-sm pb-4">
+                  <div className="mt-6 mx-4">
+                    <h3 className="font-bold mb-2 truncate">{prod.title}</h3>
+                    <p className="text-xs	truncate mb-2">{prod.description}</p>
+                    <p className="mb-4 text-sm">{prod.category}</p>
                   </div>
-                  <div className="cart-pricing">
-                    <div className="cart-parice">price {prod.price}$</div>
-                    <div className="add-product">
+                  <div className="flex justify-between items-center mx-4">
+                    <div className="text-sm">price {prod.price}$</div>
+                    <div>
                       <button
                         type="button"
                         id="button"
+                        className="bg-blue-500 px-2 py-1 text-center text-sm text-white"
                         onClick={() => handleIncreaseItem(prod)}
                       >
                         Add to cart
@@ -104,22 +109,27 @@ const ProductObject: React.FC<{ productsItem: Product[] }> = (props) => {
             prod.title.toLowerCase().includes(searchQuery as string)
           ) {
             return (
-              <div className="cart col-md-4" key={prod.title}>
-                <div className="cart-picture">
-                  <img src={prod.image} alt="product-picture" />
+              <div key={prod.title}>
+                <div className="h-52">
+                  <img
+                    src={prod.image}
+                    alt="product-picture"
+                    className="h-full w-full"
+                  />
                 </div>
-                <div className="cart-decs-body">
-                  <div className="cart-desc">
-                    <h3>{prod.title}</h3>
-                    <p>{prod.description}</p>
-                    <p id="product-category">{prod.category}</p>
+                <div className="shadow-md rounded-sm pb-4">
+                  <div className="mt-6 mx-4">
+                    <h3 className="font-bold mb-2 truncate">{prod.title}</h3>
+                    <p className="text-xs	truncate mb-2">{prod.description}</p>
+                    <p className="mb-4 text-sm">{prod.category}</p>
                   </div>
-                  <div className="cart-pricing">
-                    <div className="cart-parice">price {prod.price}$</div>
-                    <div className="add-product">
+                  <div className="flex justify-between items-center mx-4">
+                    <div className="text-sm">price {prod.price}$</div>
+                    <div>
                       <button
                         type="button"
                         id="button"
+                        className="bg-blue-500 px-2 py-1 text-center text-sm text-white"
                         onClick={() => handleIncreaseItem(prod)}
                       >
                         Add to cart

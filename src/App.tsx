@@ -6,6 +6,7 @@ import RootLayout from "./components/Root";
 import UserDetail, { loader as userLoader } from "./pages/UserDetail";
 import ErrorPage from "./components/Errors/ErrorPage";
 import ShopContextProvider from "./shop/shop-context";
+import React from "react";
 
 const router = createBrowserRouter([
   {
