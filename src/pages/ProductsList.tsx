@@ -5,7 +5,6 @@ import { useLoaderData } from "react-router-dom";
 
 const ProductsList: React.FC<{}> = () => {
   const products = useLoaderData() as Product[];
-  console.log(products);
   const memorizedProductObject= useMemo(()=><ProductObject productsItem={products} />,[products]);
   return memorizedProductObject;
 };

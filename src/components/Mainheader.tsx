@@ -2,28 +2,38 @@ import { Link } from "react-router-dom";
 import logo from "../images/825.jpg";
 import React, { useContext, useState } from "react";
 import { ShopContext } from "../shop/shop-context";
-import Product from "../Models/Product";
 
 const Mainheader: React.FC<{}> = () => {
   const { products } = useContext(ShopContext);
 
   return (
-    <header>
-      <div className="user-profile">
-        <div className="user-profile-picture">
-          {/* <img src={logo} alt="profile-picture" /> */}
+    <header className="flex justify-between min-h-16 bg-zinc-300">
+      <div className="flex w-1/3 content-center items-center">
+        <div className="m-0 p-0 ml-6">
+          <img className="h-10 rounded-full" src={logo} alt="profile-picture" />
         </div>
-        <div className="user-profile-name">
-          <Link to="/userDetails">Hi, James</Link>
+        <div className="user-profile-name ml-1">
+          <Link to="/userDetails" className="hover:text-slate-200">
+            Hi, James
+          </Link>
         </div>
       </div>
-      <div className="logo">
-        <p>LOGO</p>
+
+      <div className="flex w-1/3 content-center items-center justify-center text-center">
+        <p className=" bg-white w-4/5">LOGO</p>
       </div>
-      <div className="products-basket">
-        <div className="products-basket-disc">
-          <Link to="/cartItems">Cart</Link>
-          <span id="numberOfProducts">{products.length}</span>
+
+      <div className="flex w-1/3 justify-end items-center ">
+        <div className="mr-6">
+          <Link to="/cartItems" className="mr-1 hover:text-slate-200">
+            Cart
+          </Link>
+          <span
+            id="numberOfProducts"
+            className="bg-red-500 rounded-full px-2 py-0.5"
+          >
+            {products.length}
+          </span>
         </div>
       </div>
     </header>

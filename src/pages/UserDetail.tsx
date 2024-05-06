@@ -5,7 +5,7 @@ import React, { useMemo } from "react";
 
 const UserDetail: React.FC<{}> = () => {
   const loadedUser = useLoaderData() as UserType;
-  console.log(loadedUser);
+  
   const memoizedUserComponent = useMemo(() => <User user={loadedUser} />, [loadedUser]);
 
   return memoizedUserComponent;
