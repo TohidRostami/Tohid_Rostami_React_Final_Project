@@ -1,7 +1,6 @@
 import { Outlet } from "react-router-dom";
-// import Mainheader from "./Mainheader";
 import { useContext } from "react";
-import { ShopContext } from "../shop/shop-context";
+import { ShopContext } from "../context/shop-context";
 
 function RootLayout() {
   const { mainHeader } = useContext(ShopContext);

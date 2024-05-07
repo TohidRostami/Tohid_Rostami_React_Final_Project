@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import logo from "../images/825.jpg";
-import React, { useContext, useState } from "react";
-import { ShopContext } from "../shop/shop-context";
+import logo from "../assets/images/825.jpg";
+import React, { useContext } from "react";
+import { ShopContext } from "../context/shop-context";
 
 const Mainheader: React.FC<{}> = () => {
   const { products } = useContext(ShopContext);
