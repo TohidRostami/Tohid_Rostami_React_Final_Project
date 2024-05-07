@@ -1,5 +1,5 @@
-import React, { useContext, useState } from "react";
-import { ShopContext } from "../shop/shop-context";
+import React, { useContext } from "react";
+import { ShopContext } from "../context/shop-context";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCircleMinus,

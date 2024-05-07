@@ -1,6 +1,6 @@
 import { useContext, useState, useMemo, useCallback } from "react";
 import Product from "../Models/Product";
-import { ShopContext } from "../shop/shop-context";
+import { ShopContext } from "../context/shop-context";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 

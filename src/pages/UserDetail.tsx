@@ -18,7 +18,7 @@ export async function loader() {
 
   if (!response.ok) {
     throw new Response(
-      JSON.stringify({ messahe: "Could not fetch products!" }),
+      JSON.stringify({ message: "Could not fetch User!" }),
       { status: 500 }
     );
   } else {
