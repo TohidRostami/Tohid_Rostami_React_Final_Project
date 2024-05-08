@@ -12,11 +12,12 @@ const ProductsList: React.FC<{}> = () => {
 export default React.memo(ProductsList);
 
 export async function loader() {
-  const response = await fetch("https://fakestoreapi.com/products");
+  const apiUrl = "https://fakestoreapi.com/products";
+  const response = await fetch(apiUrl);
 
   if (!response.ok) {
     throw new Response(
-      JSON.stringify({ messahe: "Could not fetch products!" }),
+      JSON.stringify({ message: "Could not fetch products!" }),
       { status: 500 }
     );
   } else {
