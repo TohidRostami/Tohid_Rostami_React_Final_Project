@@ -23,7 +23,7 @@ const CartItems: React.FC<{}> = () => {
         <div className="flex justify-around items-center h-12 bg-gray-400 border-black border-2">
           <p>number</p>
           <p>Title</p>
-          <p>description</p>
+          <p className="hidden sm:inline-block">description</p>
           <p>Quantity</p>
           <p>price</p>
           <p>Total Price</p>
@@ -37,7 +37,7 @@ const CartItems: React.FC<{}> = () => {
           eachItemCount().map((prod) => {
             return (
               <div
-                className="grid grid-cols-6 gap-7 items-center h-12 border-b-2 border-x-2 border-black w-full"
+                className="sm:grid sm:grid-cols-6 gap-7 items-center h-12 border-b-2 border-x-2 border-black w-full min-[320px]:grid min-[320px]:grid-cols-5 min-[320px]:gap-5"
                 key={prod.item.id}
               >
                 <div className="text-center">
@@ -48,7 +48,9 @@ const CartItems: React.FC<{}> = () => {
                   </p>
                 </div>
                 <p className="truncate ">{prod.item.title}</p>
-                <p className="truncate">{prod.item.description}</p>
+                <p className="hidden sm:inline-block truncate ">
+                  {prod.item.description}
+                </p>
 
                 <div className="flex justify-center items-center text-center">
                   <FontAwesomeIcon

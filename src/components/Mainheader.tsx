@@ -20,7 +20,9 @@ const Mainheader: React.FC<{}> = () => {
       </div>
 
       <div className="flex w-1/3 content-center items-center justify-center text-center">
-        <p className=" bg-white w-4/5">LOGO</p>
+        <Link to="/" className=" bg-white w-4/5 hover:text-slate-200">
+          LOGO
+        </Link>
       </div>
 
       <div className="flex w-1/3 justify-end items-center ">

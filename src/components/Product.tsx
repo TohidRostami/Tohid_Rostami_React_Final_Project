@@ -35,8 +35,8 @@ const ProductObject: React.FC<{ productsItem: Product[] }> = (props) => {
 
   return (
     <>
-      <div className="flex flex-row h-16 items-center my-4">
-        <div className="w-1/3 h-full content-center ml-6">
+      <div className="flex sm:flex-row h-16 items-center my-4 min-[320px]:flex-col">
+        <div className="sm:w-1/3 h-full content-center ml-6 min-[320px]:w-full">
           <div className=" flex w-4/5 relative items-center text-gray-500 focus-within:text-gray-600">
             <FontAwesomeIcon
               icon={faMagnifyingGlass}
@@ -51,7 +51,7 @@ const ProductObject: React.FC<{ productsItem: Product[] }> = (props) => {
             />
           </div>
         </div>
-        <div className="w-1/3 h-full content-center ">
+        <div className="sm:w-1/3 h-full sm:ml-0 content-center min-[320px]:w-full min-[320px]:ml-6">
           <div>
             <select
               name="category"
@@ -70,43 +70,13 @@ const ProductObject: React.FC<{ productsItem: Product[] }> = (props) => {
         </div>
       </div>
 
-      <div className="grid grid-cols-4 gap-10 mx-9 mb-10">
+      <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 min-[320px]:grid-cols-1 gap-10 mx-9 mb-10">
         {props.productsItem.map((prod) => {
-          if (selectedCategory === undefined && searchQuery === undefined) {
-            return (
-              <div key={prod.title}>
-                <div className="h-52">
-                  <img
-                    src={prod.image}
-                    alt="product-picture"
-                    className="h-full w-full"
-                  />
-                </div>
-                <div className="shadow-md rounded-sm pb-4">
-                  <div className="mt-6 mx-4">
-                    <h3 className="font-bold mb-2 truncate">{prod.title}</h3>
-                    <p className="text-xs	truncate mb-2">{prod.description}</p>
-                    <p className="mb-4 text-sm">{prod.category}</p>
-                  </div>
-                  <div className="flex justify-between items-center mx-4">
-                    <div className="text-sm">price {prod.price}$</div>
-                    <div>
-                      <button
-                        type="button"
-                        id="button"
-                        className="bg-blue-500 px-2 py-1 text-center text-sm text-white"
-                        onClick={() => handleIncreaseItem(prod)}
-                      >
-                        Add to cart
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            );
-          } else if (
-            prod.category === selectedCategory ||
-            prod.title.toLowerCase().includes(searchQuery as string)
+          if (
+            (selectedCategory === undefined ||
+              prod.category === selectedCategory) &&
+            (searchQuery === undefined ||
+              prod.title.toLowerCase().includes(searchQuery as string))
           ) {
             return (
               <div key={prod.title}>
