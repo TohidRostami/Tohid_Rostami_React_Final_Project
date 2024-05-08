@@ -12,9 +12,9 @@ const UserDetail: React.FC<{}> = () => {
 };
 
 export default React.memo(UserDetail);
-
 export async function loader() {
-  const response = await fetch("https://fakestoreapi.com/users/1");
+  const apiUrl ="https://fakestoreapi.com/users/1";
+  const response = await fetch(apiUrl);
 
   if (!response.ok) {
     throw new Response(
